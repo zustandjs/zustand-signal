@@ -50,7 +50,7 @@ It will transform the code with signal to the code that React can handle.
 
 const Counter = () => (
   <div>
-    Count: {$(state, (state) => state.count)} ({Math.random()})
+    Count: {$(store, (state) => state.count)} ({Math.random()})
   </div>
 );
 ```

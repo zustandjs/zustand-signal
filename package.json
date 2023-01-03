@@ -63,9 +63,13 @@
     "signal"
   ],
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "create-react-signals": "https://pkg.csb.dev/dai-shi/create-react-signals/commit/c8c6d651/create-react-signals",
+    "ramda": "^0.28.0"
+  },
   "devDependencies": {
     "@types/jest": "^29.2.4",
+    "@types/ramda": "^0.28.20",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.46.1",
@@ -94,7 +98,6 @@
     "zustand": "^4.2.0"
   },
   "peerDependencies": {
-    "react": ">=17.0.0",
-    "zustand": ">=4.0.0"
+    "react": ">=17.0.0"
   }
 }

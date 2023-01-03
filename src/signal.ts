@@ -41,22 +41,39 @@ type Subscribe = (callback: () => void) => Unsubscribe;
 type GetValue = () => unknown;
 type SetValue = (path: unknown[], value: unknown) => void;
 
+const identity = <T>(x: T): T => x;
+
 const createSignal = <T, S>(
   store: StoreApi<T>,
   selector: (state: T) => S,
   equalityFn: (a: S, b: S) => boolean,
 ): [Subscribe, GetValue, SetValue] => {
   let selected = selector(store.getState());
-  const sub: Subscribe = (callback) =>
-    store.subscribe(() => {
+  let subscribers = 0;
+  const sub: Subscribe = (callback) => {
+    const unsubscribe = store.subscribe(() => {
       const nextSelected = selector(store.getState());
       if (!equalityFn(selected, nextSelected)) {
         selected = nextSelected;
         callback();
       }
     });
-  const get: GetValue = () => selected;
+    subscribers++;
+    return () => {
+      subscribers -= 1;
+      unsubscribe();
+    };
+  };
+  const get: GetValue = () => {
+    if (subscribers === 0) {
+      selected = selector(store.getState());
+    }
+    return selected;
+  };
   const set: SetValue = (path, value) => {
+    if (selector !== identity) {
+      throw new Error('Cannot set a value with a selector');
+    }
     store.setState(R.set(R.lensPath(path as string[]), value));
   };
   return [sub, get, set];
@@ -65,8 +82,6 @@ const createSignal = <T, S>(
 const { getSignal, createElement } = createReactSignals(createSignal, use);
 
 export { createElement };
-
-const identity = <T>(x: T): T => x;
 
 export function $<T>(store: StoreApi<T>): T;
 

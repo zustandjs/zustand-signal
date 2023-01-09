@@ -43,6 +43,15 @@ type SetValue = (path: unknown[], value: unknown) => void;
 
 const identity = <T>(x: T): T => x;
 
+const fixPath = (obj: unknown, path: unknown[]): (string | number)[] => {
+  if (!path.length) {
+    return [];
+  }
+  const first = path[0] as string;
+  const rest = fixPath((obj as any)[first], path.slice(1));
+  return [Array.isArray(obj) ? Number(first) : first, ...rest];
+};
+
 const createSignal = <T, S>(
   store: StoreApi<T>,
   selector: (state: T) => S,
@@ -74,7 +83,8 @@ const createSignal = <T, S>(
     if (selector !== identity) {
       throw new Error('Cannot set a value with a selector');
     }
-    store.setState(R.set(R.lensPath(path as string[]), value));
+    // TODO it could be performant without using Ramda and make it 1-pass.
+    store.setState(R.set(R.lensPath(fixPath(store.getState(), path)), value));
   };
   return [sub, get, set];
 };

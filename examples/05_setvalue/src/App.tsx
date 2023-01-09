@@ -12,12 +12,12 @@ const store = createStore<{
 }));
 
 const inc = () => {
-  const prevCount = ($(store).count as any)();
+  const prevCount = $(store).count.value;
   const nextCount = prevCount + 1;
-  ($(store).count as any)(nextCount);
-  const prevDataCount = ($(store).data.count as any)();
+  $(store).count.value = nextCount;
+  const prevDataCount = $(store).data.count.value;
   const nextDataCount = prevDataCount + 1;
-  ($(store).data.count as any)(nextDataCount);
+  $(store).data.count.value = nextDataCount;
 };
 
 const CounterWithSignal = () => {

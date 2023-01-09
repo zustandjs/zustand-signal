@@ -42,19 +42,18 @@ type SetValue = (path: unknown[], value: unknown) => void;
 
 const identity = <T>(x: T): T => x;
 
-const updateValue = (obj: unknown, path: unknown[], value: unknown) => {
+const updateValue = (obj: any, path: unknown[], value: unknown) => {
   if (!path.length) {
     return value;
   }
-  const first = path[0] as string;
-  const rest = path.slice(1);
-  const prevValue = (obj as any)[first];
+  const [first, ...rest] = path;
+  const prevValue = obj[first as string];
   const nextValue = updateValue(prevValue, rest, value);
   if (Object.is(prevValue, nextValue)) {
     return obj;
   }
-  const copied = Array.isArray(obj) ? obj.slice() : { ...(obj as any) };
-  copied[first] = nextValue;
+  const copied = Array.isArray(obj) ? obj.slice() : { ...obj };
+  copied[first as string] = nextValue;
   return copied;
 };
 
@@ -89,7 +88,7 @@ const createSignal = <T, S>(
     if (selector !== identity) {
       throw new Error('Cannot set a value with a selector');
     }
-    store.setState((prev) => updateValue(prev, path, value));
+    store.setState((prev) => updateValue(prev, path, value), true);
   };
   return [sub, get, set];
 };

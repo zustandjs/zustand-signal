@@ -1,6 +1,9 @@
 # Change Log
 
 ## [Unreleased]
+### Changed
+- feat: value prop in signal #3
+
 ## [0.2.1] - 2023-01-09
 ### Changed
 - fix: updating arrays #2

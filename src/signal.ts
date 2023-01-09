@@ -93,17 +93,32 @@ const createSignal = <T, S>(
   return [sub, get, set];
 };
 
-const { getSignal, createElement } = createReactSignals(createSignal, use);
+const VALUE_PROP = Symbol();
+
+export const getValueProp = <T extends { value: unknown }>(
+  x: AttachValue<T>,
+): AttachValue<T['value']> => (x as any)[VALUE_PROP];
+
+const { getSignal, createElement } = createReactSignals(
+  createSignal,
+  'value',
+  VALUE_PROP,
+  use,
+);
 
 export { createElement };
 
-export function $<T>(store: StoreApi<T>): T;
+type AttachValue<T> = T & { value: T } & {
+  [K in keyof T]: AttachValue<T[K]>;
+};
+
+export function $<T>(store: StoreApi<T>): AttachValue<T>;
 
 export function $<T, S>(
   store: StoreApi<T>,
   selector: (state: T) => S,
   equalityFn?: (a: S, b: S) => boolean,
-): S;
+): AttachValue<S>;
 
 export function $(
   store: StoreApi<unknown>,

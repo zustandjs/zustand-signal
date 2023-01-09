@@ -3,7 +3,6 @@
 import ReactExports from 'react';
 import type { StoreApi } from 'zustand/vanilla';
 import { createReactSignals } from 'create-react-signals';
-import * as R from 'ramda';
 
 const use =
   ReactExports.use ||
@@ -43,13 +42,20 @@ type SetValue = (path: unknown[], value: unknown) => void;
 
 const identity = <T>(x: T): T => x;
 
-const fixPath = (obj: unknown, path: unknown[]): (string | number)[] => {
+const updateValue = (obj: unknown, path: unknown[], value: unknown) => {
   if (!path.length) {
-    return [];
+    return value;
   }
   const first = path[0] as string;
-  const rest = fixPath((obj as any)[first], path.slice(1));
-  return [Array.isArray(obj) ? Number(first) : first, ...rest];
+  const rest = path.slice(1);
+  const prevValue = (obj as any)[first];
+  const nextValue = updateValue(prevValue, rest, value);
+  if (Object.is(prevValue, nextValue)) {
+    return obj;
+  }
+  const copied = Array.isArray(obj) ? obj.slice() : { ...(obj as any) };
+  copied[first] = nextValue;
+  return copied;
 };
 
 const createSignal = <T, S>(
@@ -83,8 +89,7 @@ const createSignal = <T, S>(
     if (selector !== identity) {
       throw new Error('Cannot set a value with a selector');
     }
-    // TODO it could be performant without using Ramda and make it 1-pass.
-    store.setState(R.set(R.lensPath(fixPath(store.getState(), path)), value));
+    store.setState((prev) => updateValue(prev, path, value));
   };
   return [sub, get, set];
 };

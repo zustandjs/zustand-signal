@@ -2947,9 +2947,9 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-"create-react-signals@https://pkg.csb.dev/dai-shi/create-react-signals/commit/6b2a8042/create-react-signals":
+"create-react-signals@https://pkg.csb.dev/dai-shi/create-react-signals/commit/a3398727/create-react-signals":
   version "0.2.0"
-  resolved "https://pkg.csb.dev/dai-shi/create-react-signals/commit/6b2a8042/create-react-signals#0e657e24f87a7d0b3dffbe5b30ea5ca44777f1dd"
+  resolved "https://pkg.csb.dev/dai-shi/create-react-signals/commit/a3398727/create-react-signals#afc9f5771fcfad12ac2375fcad88345fea368765"
 
 cross-spawn@^6.0.5:
   version "6.0.5"

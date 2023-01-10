@@ -52,7 +52,8 @@
     "examples:02_props": "DIR=02_props EXT=tsx webpack serve",
     "examples:03_async": "DIR=03_async EXT=tsx webpack serve",
     "examples:04_todos": "DIR=04_todos EXT=tsx webpack serve",
-    "examples:05_setvalue": "DIR=05_setvalue EXT=tsx webpack serve"
+    "examples:05_setvalue": "DIR=05_setvalue EXT=tsx webpack serve",
+    "examples:06_r3f": "DIR=06_r3f EXT=tsx webpack serve"
   },
   "jest": {
     "testEnvironment": "jsdom",
@@ -68,6 +69,8 @@
     "create-react-signals": "https://pkg.csb.dev/dai-shi/create-react-signals/commit/6b2a8042/create-react-signals"
   },
   "devDependencies": {
+    "@react-three/drei": "^9.51.22",
+    "@react-three/fiber": "^8.10.0",
     "@types/jest": "^29.2.5",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
@@ -88,6 +91,7 @@
     "prettier": "^2.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "three": "^0.148.0",
     "ts-jest": "^29.0.3",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.4",

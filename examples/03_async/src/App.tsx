@@ -55,9 +55,9 @@ const Controls = () => {
 const App = () => (
   <>
     <Controls />
-    <h1>With $(atom)</h1>
+    <h1>With $(store, selector)</h1>
     <UserWithSignal />
-    <h1>With useAtom(atom)</h1>
+    <h1>With useStore(store, selector)</h1>
     <User />
   </>
 );

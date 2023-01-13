@@ -28,7 +28,7 @@ const Counter = () => {
   const count = useStore(store, (state) => state.count);
   return (
     <div>
-      <h1>With useAtom(atom)</h1>
+      <h1>With useStore(store, selector)</h1>
       <div style={{ position: 'relative', left: count }}>
         Random: {Math.random()}
       </div>

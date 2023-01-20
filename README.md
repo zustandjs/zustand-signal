@@ -61,7 +61,7 @@ const Counter = () => (
 import { useEffect, useMemo, useReducer } from 'react';
 
 const Counter = () => {
-  const rerender = useReducer((c) => c + 1, 0);
+  const [, rerender] = useReducer((c) => c + 1, 0);
   useEffect(() => {
     let lastValue;
     const unsubscribe = store.subscribe(() => {

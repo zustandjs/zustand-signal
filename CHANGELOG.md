@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+### Changed
+- fix: improve types #7
 
 ## [0.4.1] - 2023-01-13
 ### Changed

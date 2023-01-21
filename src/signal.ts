@@ -63,23 +63,29 @@ const createSignal = <T, S>(
   equalityFn: (a: S, b: S) => boolean,
 ): [Subscribe, GetValue, SetValue] => {
   let selected = selector(store.getState());
-  let subscribers = 0;
+  const listeners = new Set<() => void>();
+  let unsubscribe: Unsubscribe | undefined;
   const sub: Subscribe = (callback) => {
-    const unsubscribe = store.subscribe(() => {
-      const nextSelected = selector(store.getState());
-      if (!equalityFn(selected, nextSelected)) {
-        selected = nextSelected;
-        callback();
-      }
-    });
-    subscribers++;
+    if (!listeners.size) {
+      unsubscribe = store.subscribe(() => {
+        const nextSelected = selector(store.getState());
+        if (!equalityFn(selected, nextSelected)) {
+          selected = nextSelected;
+          listeners.forEach((listener) => listener());
+        }
+      });
+    }
+    listeners.add(callback);
     return () => {
-      subscribers -= 1;
-      unsubscribe();
+      listeners.delete(callback);
+      if (!listeners.size) {
+        (unsubscribe as Unsubscribe)();
+        unsubscribe = undefined;
+      }
     };
   };
   const get: GetValue = () => {
-    if (subscribers === 0) {
+    if (!listeners.size) {
       selected = selector(store.getState());
     }
     return selected;

@@ -14,10 +14,8 @@ const store = createStore<{
 const CounterWithSignal = () => {
   return (
     <div>
-      <h1>With $(store, selector)</h1>
-      <div
-        style={{ position: 'relative', left: $(store, (state) => state.count) }}
-      >
+      <h1>With $(store)</h1>
+      <div style={{ position: 'relative', left: $(store).count }}>
         Random: {Math.random()}
       </div>
     </div>

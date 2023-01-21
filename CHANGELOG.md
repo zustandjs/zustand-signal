@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+
+## [0.5.0] - 2023-01-21
 ### Changed
 - fix: improve types #7
 - feat: fallback to redenerer and scoped subscription #8

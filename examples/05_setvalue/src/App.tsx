@@ -23,9 +23,11 @@ const inc = () => {
 const CounterWithSignal = () => {
   return (
     <div>
-      <h1>With $(store, selector)</h1>
-      <div>Count: {$(store, (state) => state.count)}</div>
-      <div>Another Count: {$(store, (state) => state.data.count)}</div>
+      <h1>With $(store)</h1>
+      <div>Count: {$(store).count}</div>
+      <div>Count: {$(store).count}</div>
+      <div>Another Count: {$(store).data.count}</div>
+      <div>Another Count: {$(store).data.count}</div>
       <div>({Math.random()})</div>
     </div>
   );

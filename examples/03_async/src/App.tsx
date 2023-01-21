@@ -24,7 +24,7 @@ const createRandomColor = () => `#${Math.random().toString(16).slice(-6)}`;
 const UserWithSignal = () => {
   return (
     <div style={{ backgroundColor: createRandomColor() }}>
-      User: {$(store, (state) => state.user)}
+      User: {$(store).user}
     </div>
   );
 };
@@ -55,7 +55,7 @@ const Controls = () => {
 const App = () => (
   <>
     <Controls />
-    <h1>With $(store, selector)</h1>
+    <h1>With $(store)</h1>
     <UserWithSignal />
     <h1>With useStore(store, selector)</h1>
     <User />

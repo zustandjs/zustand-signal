@@ -128,7 +128,7 @@ type FilteredProps = {
 };
 const Filtered = ({ remove }: FilteredProps) => (
   <div style={{ padding: 30, backgroundColor: createRandomColor() }}>
-    {$(store, (state) => state.filtered).map((todo) => (
+    {$(store).filtered.map((todo) => (
       <TodoItem key={todo.id} todo={todo} remove={remove} />
     ))}
   </div>

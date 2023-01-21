@@ -5,17 +5,21 @@ import { $ } from 'zustand-signal';
 
 const store = createStore<{
   count: number;
+  text: string;
   inc: () => void;
+  changeText: () => void;
 }>((set) => ({
   count: 0,
+  text: 'hello',
   inc: () => set((state) => ({ count: state.count + 1 })),
+  changeText: () => set((state) => ({ text: `${state.text}!` })),
 }));
 
 const CounterWithSignal = () => {
   return (
     <div>
-      <h1>With $(store, selector)</h1>
-      Count: {$(store, (state) => state.count)} ({Math.random()})
+      <h1>With $(store)</h1>
+      Count: {$(store).count} ({Math.random()})
     </div>
   );
 };
@@ -32,10 +36,14 @@ const Counter = () => {
 
 const Controls = () => {
   const inc = useStore(store, (state) => state.inc);
+  const changeText = useStore(store, (state) => state.changeText);
   return (
     <div>
       <button type="button" onClick={inc}>
         Increment
+      </button>
+      <button type="button" onClick={changeText}>
+        Change text
       </button>
     </div>
   );

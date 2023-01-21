@@ -3,6 +3,7 @@
 ## [Unreleased]
 ### Changed
 - fix: improve types #7
+- feat: fallback to redenerer and scoped subscription #8
 
 ## [0.4.1] - 2023-01-13
 ### Changed

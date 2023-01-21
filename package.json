@@ -53,7 +53,8 @@
     "examples:03_async": "DIR=03_async EXT=tsx webpack serve",
     "examples:04_todos": "DIR=04_todos EXT=tsx webpack serve",
     "examples:05_setvalue": "DIR=05_setvalue EXT=tsx webpack serve",
-    "examples:06_r3f": "DIR=06_r3f EXT=tsx webpack serve"
+    "examples:06_r3f": "DIR=06_r3f EXT=tsx webpack serve",
+    "examples:07_signal": "DIR=07_signal EXT=tsx webpack serve"
   },
   "jest": {
     "testEnvironment": "jsdom",
@@ -66,7 +67,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "create-react-signals": "https://pkg.csb.dev/dai-shi/create-react-signals/commit/03b06dfe/create-react-signals"
+    "create-react-signals": "0.6.0"
   },
   "devDependencies": {
     "@react-three/drei": "^9.51.24",

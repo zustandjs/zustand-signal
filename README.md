@@ -1,5 +1,10 @@
 # zustand-signal
 
+[![CI](https://img.shields.io/github/actions/workflow/status/dai-shi/zustand-signal/ci.yml?branch=main)](https://github.com/dai-shi/zustand-signal/actions?query=workflow%3ACI)
+[![npm](https://img.shields.io/npm/v/zustand-signal)](https://www.npmjs.com/package/zustand-signal)
+[![size](https://img.shields.io/bundlephobia/minzip/zustand-signal)](https://bundlephobia.com/result?p=zustand-signal)
+[![discord](https://img.shields.io/discord/627656437971288081)](https://discord.gg/MrQdmzd)
+
 Another React binding for Zustand
 
 ## What it is

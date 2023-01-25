@@ -1,7 +1,7 @@
 {
   "name": "zustand-signal",
   "description": "Another React binding for Zustand",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author": "Daishi Kato",
   "repository": {
     "type": "git",

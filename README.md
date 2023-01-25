@@ -14,7 +14,7 @@ There's alternative library called [use-zustand](https://github.com/dai-shi/use-
 
 This library provides yet another method.
 It follows [jotai-signal](https://github.com/jotai-labs/jotai-signal),
-which is a variant of [@preact/signals-react](https://www.npmjs.com/package/@preact/signals-react).
+which is inspired by [@preact/signals-react](https://www.npmjs.com/package/@preact/signals-react).
 
 It allows to use the Zustand store in React without using hooks.
 We don't need to follow the rules of hooks.

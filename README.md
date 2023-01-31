@@ -38,7 +38,7 @@ setInterval(() => {
 
 const Counter = () => (
   <div>
-    Count: {$(store).count)}
+    Count: {$(store).count}
   </div>
 );
 ```

@@ -16,6 +16,7 @@
     "paths": {
       "zustand-signal": ["./src"],
       "zustand-signal/jsx-runtime": ["./src/jsx-runtime"]
-    }
+    },
+    "skipLibCheck": true
   }
 }

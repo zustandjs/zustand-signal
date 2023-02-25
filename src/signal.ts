@@ -105,14 +105,15 @@ export const getValueProp = <T extends { value: unknown }>(
   x: AttachValue<T>,
 ): AttachValue<T['value']> => (x as any)[VALUE_PROP];
 
-const { getSignal, createElement } = createReactSignals(
+const { getSignal, inject } = createReactSignals(
   createSignal,
+  true,
   'value',
   VALUE_PROP,
   use,
 );
 
-export { createElement };
+export const createElement = inject(ReactExports.createElement);
 
 type AttachValue<T> = T & { value: T } & {
   readonly [K in keyof T]: AttachValue<T[K]>;

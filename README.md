@@ -76,7 +76,7 @@ const Counter = () => {
   }, []);
   return (
     <div>
-      {(useMemo(() => 'Count: '), [])}
+      {useMemo(() => 'Count: ', [])}
       {store.getState().count}
       {useMemo(() => ` (${Math.random()})`, [])}
     </div>

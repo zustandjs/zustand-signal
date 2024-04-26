@@ -1,6 +1,6 @@
 # zustand-signal
 
-[![CI](https://img.shields.io/github/actions/workflow/status/dai-shi/zustand-signal/ci.yml?branch=main)](https://github.com/dai-shi/zustand-signal/actions?query=workflow%3ACI)
+[![CI](https://img.shields.io/github/actions/workflow/status/zustandjs/zustand-signal/ci.yml?branch=main)](https://github.com/zustandjs/zustand-signal/actions?query=workflow%3ACI)
 [![npm](https://img.shields.io/npm/v/zustand-signal)](https://www.npmjs.com/package/zustand-signal)
 [![size](https://img.shields.io/bundlephobia/minzip/zustand-signal)](https://bundlephobia.com/result?p=zustand-signal)
 [![discord](https://img.shields.io/discord/627656437971288081)](https://discord.gg/MrQdmzd)
@@ -10,10 +10,10 @@ Another React binding for Zustand
 ## What it is
 
 Typically, Zustand store is a React hook you can just use in React.
-There's alternative library called [use-zustand](https://github.com/dai-shi/use-zustand).
+There's alternative library called [use-zustand](https://github.com/zustandjs/use-zustand).
 
 This library provides yet another method.
-It follows [jotai-signal](https://github.com/jotai-labs/jotai-signal),
+It follows [jotai-signal](https://github.com/jotaijs/jotai-signal),
 which is inspired by [@preact/signals-react](https://www.npmjs.com/package/@preact/signals-react).
 
 It allows to use the Zustand store in React without using hooks.
@@ -36,11 +36,7 @@ setInterval(() => {
   store.getState().inc();
 }, 100);
 
-const Counter = () => (
-  <div>
-    Count: {$(store).count}
-  </div>
-);
+const Counter = () => <div>Count: {$(store).count}</div>;
 ```
 
 ## How it works
@@ -80,7 +76,7 @@ const Counter = () => {
   }, []);
   return (
     <div>
-      {useMemo(() => 'Count: '), []}
+      {useMemo(() => 'Count: ', [])}
       {store.getState().count}
       {useMemo(() => ` (${Math.random()})`, [])}
     </div>

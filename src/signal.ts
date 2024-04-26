@@ -1,4 +1,4 @@
-/// <reference types="react/experimental" />
+/// <reference types="react/canary" />
 
 import ReactExports from 'react';
 import type { StoreApi } from 'zustand/vanilla';
@@ -42,19 +42,19 @@ type SetValue = (path: unknown[], value: unknown) => void;
 
 const identity = <T>(x: T): T => x;
 
-const updateValue = (obj: any, path: unknown[], value: unknown) => {
+const updateValue = <T>(obj: T, path: unknown[], value: unknown): T => {
   if (!path.length) {
-    return value;
+    return value as T;
   }
   const [first, ...rest] = path;
-  const prevValue = obj[first as string];
-  const nextValue = updateValue(prevValue, rest, value);
+  const prevValue = (obj as Record<string, unknown>)[first as string];
+  const nextValue = updateValue(prevValue as never, rest, value);
   if (Object.is(prevValue, nextValue)) {
     return obj;
   }
   const copied = Array.isArray(obj) ? obj.slice() : { ...obj };
-  copied[first as string] = nextValue;
-  return copied;
+  (copied as Record<string, unknown>)[first as string] = nextValue;
+  return copied as T;
 };
 
 const createSignal = <T, S>(
@@ -103,7 +103,9 @@ const VALUE_PROP = Symbol();
 
 export const getValueProp = <T extends { value: unknown }>(
   x: AttachValue<T>,
-): AttachValue<T['value']> => (x as any)[VALUE_PROP];
+): AttachValue<T['value']> =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (x as any)[VALUE_PROP];
 
 const { getSignal, inject } = createReactSignals(
   createSignal,
@@ -113,6 +115,7 @@ const { getSignal, inject } = createReactSignals(
   use,
 );
 
+// eslint-disable-next-line import/no-named-as-default-member
 export const createElement = inject(ReactExports.createElement);
 
 type AttachValue<T> = T & { value: T } & {

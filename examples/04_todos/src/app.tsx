@@ -77,7 +77,7 @@ type TodoItemProps = {
   todo: Todo;
   remove: RemoveFn;
 };
-const TodoItem = memo(({ todo, remove }: TodoItemProps) => {
+const TodoItem = memo(function TodoItem({ todo, remove }: TodoItemProps) {
   const toggleCompleted = () => {
     store.getState().toggleTodo(todo);
   };

@@ -2,24 +2,20 @@
   "name": "example",
   "version": "0.0.0",
   "private": true,
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
-    "@react-three/fiber": "latest",
-    "@react-three/drei": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest",
-    "three": "latest",
-    "typescript": "latest",
     "zustand": "latest",
     "zustand-signal": "latest"
   },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite"
   }
 }

@@ -4,8 +4,11 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@react-three/fiber": "latest",
+    "@react-three/drei": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "three": "latest",
     "zustand": "latest",
     "zustand-signal": "latest"
   },

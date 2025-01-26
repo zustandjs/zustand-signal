@@ -1,5 +1,7 @@
 import { createElement } from 'zustand-signal';
 
+export type * from 'react/jsx-runtime';
+
 export { Fragment } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

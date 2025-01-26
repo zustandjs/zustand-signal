@@ -1,11 +1,22 @@
 /** @jsxImportSource zustand-signal */
 
 /* eslint react/no-unknown-property: off */
+/* eslint-disable @typescript-eslint/no-namespace */
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 
 import { Canvas } from '@react-three/fiber';
+import type { ThreeElements } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { createStore } from 'zustand';
 import { $ } from 'zustand-signal';
+
+declare global {
+  namespace React {
+    namespace JSX {
+      interface IntrinsicElements extends ThreeElements {}
+    }
+  }
+}
 
 const store = createStore<{
   count: number;
